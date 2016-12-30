@@ -1,8 +1,22 @@
 import React from 'react';
 import SliderAgentsItem from './SliderAgentsItem';
+import ReactMixin from 'react-mixin';
+import ReactFire from 'reactfire';
+import firebase from 'firebase';
 
 class SliderAgents extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            slideragentslist: []
+        }
+    }
+
+    componentDidMount() {
+        this.bindAsArray(firebase.database().ref().child('slideragentslist'), "slideragentslist");
+    }
     render() {
+        //const SliderAgentsList = this.state.slideragentslist;
         const SliderAgentsList = [
             {
                 slide: 'slider--1',
@@ -19,17 +33,17 @@ class SliderAgents extends React.Component {
                 img: 'images/agents/agent1.jpg',
                 title: 'Our',
                 titlebold: 'Agents',
-                name: 'Lisa Gerrard',
+                name: 'Tom Gerrard',
                 description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, raesent luptatum zzril delenit augue duis dolore te feugait nulla nonummy nibh euismod tincidunt facilisi.',
                 tel: '+ 7 (123) 456-78-99',
-                email: 'lisa.gerrard@realhome.com'
+                email: 'tom.gerrard@realhome.com'
             },
             {
                 slide: 'slider--3',
                 img: 'images/agents/agent2.jpg',
                 title: 'Our',
                 titlebold: 'Agents',
-                name: 'Tom Gerrard',
+                name: 'Lisa Gerrard',
                 description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, raesent luptatum zzril delenit augue duis dolore te feugait nulla nonummy nibh euismod tincidunt facilisi.',
                 tel: '+ 7 (123) 456-78-99',
                 email: 'lisa.gerrard@realhome.com'
@@ -49,5 +63,7 @@ class SliderAgents extends React.Component {
         )
     }
 }
+
+ReactMixin(SliderAgents.prototype, ReactFire);
 
 export default SliderAgents;

@@ -1,8 +1,23 @@
 import React from 'react';
 import Slider3Item from './Slider3Item';
+import ReactMixin from 'react-mixin';
+import ReactFire from 'reactfire';
+import firebase from 'firebase';
 
 class Slider3 extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            slider3list: []
+        }
+    }
+
+    componentDidMount() {
+        this.bindAsArray(firebase.database().ref().child('slider3list'), "slider3list");
+    }
     render() {
+        console.log(this.state);
+        //const Slider3List = this.state.slider3list;
         const Slider3List = [
             {
                 slide: "slider--1",
@@ -35,5 +50,7 @@ class Slider3 extends React.Component {
         )
     }
 }
+
+ReactMixin(Slider3.prototype, ReactFire);
 
 export default Slider3;

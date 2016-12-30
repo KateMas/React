@@ -1,30 +1,22 @@
 import React from 'react';
 import AdvantagesItem from './AdvantagesItem';
+import ReactMixin from 'react-mixin';
+import ReactFire from 'reactfire';
+import firebase from 'firebase';
 
 class Advantages extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            advantageslist: []
+        }
+    }
+
+    componentDidMount() {
+        this.bindAsArray(firebase.database().ref().child('advantageslist'), "advantageslist");
+    }
     render() {
-        const AdvantagesList = [
-            {
-                span: 'icon-style icon-earth',
-                title: 'Whole World',
-                description: 'Proin umcorper urna et felisstibulum iaculis lacinia est. Proin dictum elem entum velit fusce euismod. Aenean commodo ligula eget dolor.'
-            },
-            {
-                span: 'icon-style icon-briefcase',
-                title: 'Confidentially',
-                description: 'Proin umcorper urna et felisstibulum iaculis lacinia est. Proin dictum elem entum velit fusce euismod. Aenean commodo ligula eget dolor.'
-            },
-            {
-                span: 'icon-style icon-photos',
-                title: 'Good Previews',
-                description: 'Proin umcorper urna et felisstibulum iaculis lacinia est. Proin dictum elem entum velit fusce euismod. Aenean commodo ligula eget dolor.'
-            },
-            {
-                span: 'icon-style icon-file-drawer',
-                title: 'Confidentially',
-                description: 'Proin umcorper urna et felisstibulum iaculis lacinia est. Proin dictum elem entum velit fusce euismod. Aenean commodo ligula eget dolor.'
-            }
-        ];
+        const AdvantagesList = this.state.advantageslist;
         return (
             <section className="advantages">
                 <div className="wrapper">
@@ -39,5 +31,7 @@ class Advantages extends React.Component {
         )
     }
 }
+
+ReactMixin(Advantages.prototype, ReactFire);
 
 export default Advantages;

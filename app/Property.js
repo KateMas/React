@@ -1,64 +1,22 @@
 import React from 'react';
 import PropertyItem from './PropertyItem';
+import ReactMixin from 'react-mixin';
+import ReactFire from 'reactfire';
+import firebase from 'firebase';
 
 class Property extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            propertylist: []
+        }
+    }
+
+    componentDidMount() {
+        this.bindAsArray(firebase.database().ref().child('propertylist'), "propertylist");
+    }
     render() {
-        const PropertyList = [
-            {
-                img: 'images/features/image1.jpg',
-                title: '1450 Cloudcroft Drop',
-                description: 'Illinois / Chicago',
-                price: '$250,000',
-                size: '3400 Sq Ft',
-                bedrooms: '2 Bedrooms',
-                bathrooms: '1 Bathroom'
-            },
-            {
-                img: 'images/features/image2.jpg',
-                title: '140 Small Village',
-                description: 'Missouri / Kansas City',
-                price: '$200,000',
-                size: '3400 Sq Ft',
-                bedrooms: '2 Bedrooms',
-                bathrooms: '1 Bathroom'
-            },
-            {
-                img: 'images/features/image3.jpg',
-                title: '1250 Lake House',
-                description: 'Colorado / Denver',
-                price: '$339,000',
-                size: '3400 Sq Ft',
-                bedrooms: '2 Bedrooms',
-                bathrooms: '1 Bathroom'
-            },
-            {
-                img: 'images/features/image4.jpg',
-                title: '1450 Cloudcroft Drop',
-                description: 'Illinois / Chicago',
-                price: '$250,000',
-                size: '3400 Sq Ft',
-                bedrooms: '2 Bedrooms',
-                bathrooms: '1 Bathroom'
-            },
-            {
-                img: 'images/features/image5.jpg',
-                title: '140 Small Village',
-                description: 'Missouri / Kansas City',
-                price: '$200,000',
-                size: '3400 Sq Ft',
-                bedrooms: '2 Bedrooms',
-                bathrooms: '1 Bathroom'
-            },
-            {
-                img: 'images/features/image6.jpg',
-                title: '1250 Lake House',
-                description: 'Colorado / Denver',
-                price: '$339,000',
-                size: '3400 Sq Ft',
-                bedrooms: '2 Bedrooms',
-                bathrooms: '1 Bathroom'
-            }
-        ];
+        const PropertyList = this.state.propertylist;
         return (
             <section id="property" className="property">
                 <div className="wrapper">
@@ -76,5 +34,7 @@ class Property extends React.Component {
         )
     }
 }
+
+ReactMixin(Property.prototype, ReactFire);
 
 export default Property;
