@@ -1534,3 +1534,22 @@ footer .wrapper-footer .item-footer.contacts .mail {
     text-decoration: underline;
     color: #e2574c
 }
+
+/*new style for example for react-router*/
+.header-placeholder {
+    height: 90px;
+}
+.page-about-us, .page-contacts {
+    min-height: 30vh;
+}
+.page-contacts a {
+    font: 400 18px/34px "Raleway", sans-serif;
+    text-decoration: none;
+    color: #3c3c3c
+}
+.page-contacts .address {
+    font: 400 20px/34px "Raleway", sans-serif;
+}
+.page-blog {
+    margin-bottom: 20px;
+}
