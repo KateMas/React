@@ -14,10 +14,10 @@ class Header extends React.Component {
                     </a>
                     <nav>
                         <ul className="navigation js-navigation">
-                            <li><a href="#home">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li><a href="#about-us">About Us</a></li>
                             <li><a href="#property">Property</a></li>
-                            <li><a href="#">Our Blog</a></li>
+                            <li><a href="#blog">Our Blog</a></li>
                             <li><a href="#contacts">Contacts</a></li>
                         </ul>
                     </nav>
