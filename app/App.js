@@ -1,48 +1,22 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import Header from './Header';
-import Slider from './Slider';
-import AboutUs from './AboutUs';
-import Advantages from './Advantages';
-import Property from './Property';
-import SliderAgents from './SliderAgents';
-import More from './More';
-import Slider3 from './Slider3';
-import Partners from './Partners';
-import Footer from './Footer';
-import firebase from 'firebase';
+import {Route, Router, hashHistory} from 'react-router';
 
-const config = {
-    apiKey: "AIzaSyCvMw9AkHkQ5Gy2BkPpP29StMKi2doCq6M",
-    authDomain: "realhome-302a1.firebaseapp.com",
-    databaseURL: "https://realhome-302a1.firebaseio.com",
-    storageBucket: "realhome-302a1.appspot.com",
-    messagingSenderId: "86285208570"
-};
+import PageHome from './pages/PageHome';
+import PageAboutUs from './pages/PageAboutUs';
+import PageProperty from './pages/PageProperty';
+import PageBlog from './pages/PageBlog';
+import PageContacts from './pages/PageContacts';
 
-firebase.initializeApp(config);
-
-class Site extends React.Component {
-    render() {
-        return (
-            <div className = "site">
-                <Header/>
-                <Slider/>
-                <AboutUs/>
-                <Advantages/>
-                <Property/>
-                <SliderAgents/>
-                <More/>
-                <Slider3/>
-                <Partners/>
-                <Footer/>
-            </div>
-        )
-    }
-}
 
 ReactDom.render(
-    <Site/>,
+    <Router history = {hashHistory}>
+        <Route path="/" component={PageHome} />
+        <Route path="about-us" component={PageAboutUs} />
+        <Route path="property" component={PageProperty} />
+        <Route path="blog" component={PageBlog} />
+        <Route path="contacts" component={PageContacts} />
+    </Router>,
     document.getElementById('app')
 )
